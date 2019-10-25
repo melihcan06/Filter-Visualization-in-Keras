@@ -17,8 +17,6 @@ img=np.resize(img,(1,input_shape[0],input_shape[1],1))
 model=Sequential()
 model.add(Conv2D(filtre_sayisi,filtre_boyutu,activation='relu',input_shape=input_shape))
 
-#filtreleri degistirmeye çalış!
-
 #conv bastirma
 """tahmin=model.predict(img)#tahmin channel first 1,198,198,4
 for i in range(filtre_sayisi):
