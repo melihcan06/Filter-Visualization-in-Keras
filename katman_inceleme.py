@@ -1,7 +1,7 @@
 from tensorflow.keras.models import Sequential,Model
 from tensorflow.keras.layers import Dense, Activation, Dropout, Flatten,Conv2D, MaxPooling2D,Input
 import numpy as np
-import CNN.konvolusyon1 as knvl
+import konvolusyon1 as knvl
 
 model = Sequential()
 model.add(Conv2D(filters=2, input_shape=(10,10,1), kernel_size=(3,3),strides=(1,1)))
