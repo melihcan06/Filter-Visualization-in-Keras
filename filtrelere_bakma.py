@@ -18,7 +18,7 @@ model=Sequential()
 model.add(Conv2D(filtre_sayisi,filtre_boyutu,activation='relu',input_shape=input_shape))
 
 #conv bastirma
-"""tahmin=model.predict(img)#tahmin channel first 1,198,198,4
+"""tahmin=model.predict(img)#tahmin 1,198,198,4
 for i in range(filtre_sayisi):
     plt.subplot(filtre_sayisi, int(filtre_sayisi/2),i+1)
     plt.imshow(tahmin[0,:,:,i])
@@ -28,8 +28,8 @@ plt.show()"""
 
 #filtre bastirma
 filters,biases=model.layers[0].get_weights()#filtreler channel last 3,3,1,4 #biases size (4,)
-print filters,biases,filters[:,:,:,0]
-print 1
+print (filters,biases,filters[:,:,:,0])
+
 """for i in range(filtre_sayisi):
     plt.subplot(filtre_sayisi, int(filtre_sayisi/2), i + 1)
     plt.imshow(np.resize(filters[:,:,:,i],filtre_boyutu))
