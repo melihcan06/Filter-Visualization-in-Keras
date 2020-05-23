@@ -27,7 +27,7 @@ for i in range(filtre_sayisi):
 plt.show()"""
 
 #filtre bastirma
-filters,biases=model.layers[0].get_weights()#filtreler channel last 3,3,1,4 #biases size (4,)
+filters,biases=model.layers[0].get_weights()#filtreler 3,3,1,4 #biases size (4,)
 print (filters,biases,filters[:,:,:,0])
 
 """for i in range(filtre_sayisi):
