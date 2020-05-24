@@ -40,6 +40,7 @@ class konvolusyon:
         ksob=self.konvolusyon_sonrasi_olusacak_boyut_hesabi(grt.shape,filtre.shape, kaydirma)
         if padding==True:
             yeni=self.ayni_boyut_icin_padding(grt,filtre.shape,kaydirma,'zero')
+            ksob=(grt.shape[0],grt.shape[1])
         else:
             yeni=np.zeros(ksob,dtype="float32")
 
