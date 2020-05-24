@@ -37,23 +37,25 @@ class konvolusyon:
     #convolution for gray scale image
     def _konvolusyon_gri(self,grt,filtre,kaydirma=(1,1),padding=False,aktivasyon_fonksiyonu='relu',biases=None):#tam kontrol yapilmadi!!!!
         #girdi=input,filtre=filter,kaydirma=stride(tuple(x,y)),if padding is True input shape = output shape
-        ksob=self.konvolusyon_sonrasi_olusacak_boyut_hesabi(grt.shape,filtre.shape, kaydirma)
         if padding==True:
-            yeni=self.ayni_boyut_icin_padding(grt,filtre.shape,kaydirma,'zero')
-            ksob=(grt.shape[0],grt.shape[1])
+            ksob=grt.shape[0],grt.shape[1]
+            grt=self.ayni_boyut_icin_padding(grt,filtre.shape,kaydirma,'zero')
         else:
-            yeni=np.zeros(ksob,dtype="float32")
-
-        goruntu_boy_bitis = (kaydirma[0]*(ksob[0]-1))+1
-        goruntu_en_bitis = (kaydirma[1]*(ksob[1]-1))+1
-        yeni_boy_index=0
-        for boy in range(0,goruntu_boy_bitis,kaydirma[0]):
-            yeni_en_index=0
-            for en in range(0,goruntu_en_bitis,kaydirma[1]):
-                deger=np.sum(np.multiply(grt[boy:boy+filtre.shape[0],en:en+filtre.shape[1]],filtre))
-                yeni[yeni_boy_index][yeni_en_index]=deger
-                yeni_en_index+=1
-            yeni_boy_index+=1
+            ksob = self.konvolusyon_sonrasi_olusacak_boyut_hesabi(grt.shape, filtre.shape, kaydirma)
+        yeni = np.zeros(ksob, dtype="float32")
+        goruntu_boy_bitis = (kaydirma[0] * (ksob[0] - 1)) + 1
+        goruntu_en_bitis = (kaydirma[1] * (ksob[1] - 1)) + 1
+        yeni_boy_index = 0
+        for boy in range(0, goruntu_boy_bitis, kaydirma[0]):
+            yeni_en_index = 0
+            for en in range(0, goruntu_en_bitis, kaydirma[1]):
+                try:
+                    deger = np.sum(np.multiply(grt[boy:boy + filtre.shape[0], en:en + filtre.shape[1]], filtre))
+                    yeni[yeni_boy_index][yeni_en_index] =  deger
+                    yeni_en_index += 1
+                except:
+                    continue
+            yeni_boy_index += 1
 
         return yeni
 
