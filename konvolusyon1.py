@@ -35,8 +35,9 @@ class konvolusyon:
         return self._padding(grt,padding_boyutu,padding_yontemi)
 
     #convolution for gray scale image
-    def _konvolusyon_gri(self,grt,filtre,kaydirma=(1,1),padding=False,aktivasyon_fonksiyonu='relu',biases=None):#tam kontrol yapilmadi!!!!
+    def _konvolusyon_gri(self,grt2,filtre,kaydirma=(1,1),padding=False,aktivasyon_fonksiyonu='relu',biases=None):#tam kontrol yapilmadi!!!!
         #girdi=input,filtre=filter,kaydirma=stride(tuple(x,y)),if padding is True input shape = output shape
+        grt=grt2.copy()
         if padding==True:
             ksob=grt.shape[0],grt.shape[1]
             grt=self.ayni_boyut_icin_padding(grt,filtre.shape,kaydirma,'zero')
